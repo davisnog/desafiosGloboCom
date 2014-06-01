@@ -83,7 +83,7 @@ public class DesafiosTest {
 	}
 	
 	@Test
-	public void deveRetornoar3628800NoFatorialDe10NoRecursivo(){
+	public void deveRetornar3628800NoFatorialDe10NoRecursivo(){
 		long esperado = 3628800;
 		
 		long calculado = desafios.fatorialRecursivo(10);
@@ -92,11 +92,12 @@ public class DesafiosTest {
 	}
 	
 	@Test
-	public void deveRetornoar3628800NoFatorialDe10NoIterativo(){
+	public void deveRetornar3628800NoFatorialDe10NoIterativo(){
 		long esperado = 3628800;
 		
 		long calculado = desafios.fatorialIterativo(10);
 		
 		assertEquals(esperado, calculado);
 	}
+	
 }

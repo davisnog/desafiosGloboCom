@@ -1,8 +1,16 @@
 package com.davinogueira.desafiosGloboCom;
 
 import java.text.Normalizer;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
+import java.util.stream.IntStream;
 
 public class Desafios {
 
@@ -49,7 +57,7 @@ public class Desafios {
 	}
 	
 	public Map<String, Integer> frequencia(String palavra){
-		Map<String, Integer> valores = new HashMap<String, Integer>();
+		Map<String, Integer> valores = new HashMap<>();
 		
 		String normaliza = Normalizer.normalize(palavra, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]","").toLowerCase();
 		
@@ -65,6 +73,46 @@ public class Desafios {
 		}
 		
 		return valores;
+	}
+	
+	public Map<Character, Integer> frequenciaJava8(String palavra){
+		String normaliza = Normalizer.normalize(palavra, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]","").toLowerCase();
+		
+		List<String> ls = Arrays.asList(normaliza);
+		
+		Map<Character, Integer> count = ls.stream()
+				.flatMap(line -> IntStream.range(0, line.length()).mapToObj(line::charAt))
+				.filter(Character::isLetter).
+                map(Character::toLowerCase).
+                collect(TreeMap::new, (m, c) -> m.merge(c, 1, Integer::sum), Map::putAll);
+		
+		return count;
+	}
+	
+	public void imprimeFrequenciaOrdenado(String palavra){
+		Map<String, Integer> frequencia = frequencia(palavra);
+		List<Entry<String, Integer>> frequenciaList = new ArrayList<>(frequencia.entrySet());
+		
+		Collections.sort(frequenciaList, new Comparator<Entry<String, Integer>>() {
+			@Override
+			public int compare(Entry<String, Integer> o1,
+					Entry<String, Integer> o2) {
+				return o1.getValue().compareTo(o2.getValue());
+			}
+		});
+		
+		for(Entry<String, Integer> freq : frequenciaList){
+			System.out.println(freq.getKey() + " : " + freq.getValue());
+		}
+		System.out.println();
+	}
+	
+	public void imprimeFrequenciaOrdenadoJava8(String palavra){
+		Map<Character, Integer> frequencia = frequenciaJava8(palavra);
+		
+		frequencia.entrySet().stream().
+        sorted((l, r) -> l.getValue().compareTo(r.getValue())).
+        forEach(e -> System.out.println(e.getKey() + ": " + e.getValue()));
 	}
 	
 	

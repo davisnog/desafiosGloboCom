@@ -6,5 +6,9 @@ public class Principal {
 		Desafios desafios = new Desafios();
 		desafios.frequencia("ana");
 		
+		String palavra = "pneumoultramicroscopicossilicovulcanoconiotico";
+		
+		desafios.imprimeFrequenciaOrdenado(palavra);
+		desafios.imprimeFrequenciaOrdenadoJava8(palavra);
 	}
 }
