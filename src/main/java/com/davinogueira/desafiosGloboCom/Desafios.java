@@ -56,13 +56,13 @@ public class Desafios {
 		return retorno;
 	}
 	
-	public Map<String, Integer> frequencia(String palavra){
-		Map<String, Integer> valores = new HashMap<>();
+	public Map<Character, Integer> frequencia(String palavra){
+		Map<Character, Integer> valores = new HashMap<>();
 		
 		String normaliza = Normalizer.normalize(palavra, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]","").toLowerCase();
 		
 		for(int i = 0; i < palavra.length(); i++){
-			String letra = String.valueOf(normaliza.charAt(i));
+			Character letra = normaliza.charAt(i);
 			
 			if(!valores.containsKey(letra)){
 				valores.put(letra, 1);
@@ -90,18 +90,18 @@ public class Desafios {
 	}
 	
 	public void imprimeFrequenciaOrdenado(String palavra){
-		Map<String, Integer> frequencia = frequencia(palavra);
-		List<Entry<String, Integer>> frequenciaList = new ArrayList<>(frequencia.entrySet());
+		Map<Character, Integer> frequencia = frequencia(palavra);
+		List<Entry<Character, Integer>> frequenciaList = new ArrayList<>(frequencia.entrySet());
 		
-		Collections.sort(frequenciaList, new Comparator<Entry<String, Integer>>() {
+		Collections.sort(frequenciaList, new Comparator<Entry<Character, Integer>>() {
 			@Override
-			public int compare(Entry<String, Integer> o1,
-					Entry<String, Integer> o2) {
+			public int compare(Entry<Character, Integer> o1,
+					Entry<Character, Integer> o2) {
 				return o1.getValue().compareTo(o2.getValue());
 			}
 		});
 		
-		for(Entry<String, Integer> freq : frequenciaList){
+		for(Entry<Character, Integer> freq : frequenciaList){
 			System.out.println(freq.getKey() + " : " + freq.getValue());
 		}
 		System.out.println();
@@ -112,7 +112,7 @@ public class Desafios {
 		
 		frequencia.entrySet().stream().
         sorted((l, r) -> l.getValue().compareTo(r.getValue())).
-        forEach(e -> System.out.println(e.getKey() + ": " + e.getValue()));
+        forEach(e -> System.out.println(e.getKey() + " : " + e.getValue()));
 	}
 	
 	

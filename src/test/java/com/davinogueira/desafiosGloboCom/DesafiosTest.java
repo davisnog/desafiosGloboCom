@@ -52,11 +52,11 @@ public class DesafiosTest {
 	
 	@Test
 	public void deveRetornarDuasLetras(){
-		Map<String, Integer> frequencia = desafios.frequencia("ana");
-		Map<String, Integer> frequencia2 = desafios.frequencia("Atenção");
+		Map<Character, Integer> frequencia = desafios.frequencia("ana");
+		Map<Character, Integer> frequencia2 = desafios.frequencia("Atenção");
 		
-		int resultado = frequencia.get("a");
-		int resultado2 = frequencia2.get("a");
+		int resultado = frequencia.get('a');
+		int resultado2 = frequencia2.get('a');
 		
 		assertEquals(2, resultado);
 		assertEquals(2, resultado2);
@@ -65,9 +65,9 @@ public class DesafiosTest {
 	@Test
 	public void deveRetornarNoveLetras(){
 		String palavra = "pneumoultramicroscopicossilicovulcanoconiotico";
-		Map<String, Integer> frequencia = desafios.frequencia(palavra);
+		Map<Character, Integer> frequencia = desafios.frequencia(palavra);
 		
-		int resultado = frequencia.get("o");
+		int resultado = frequencia.get('o');
 		
 		assertEquals(9, resultado);
 	}
@@ -75,9 +75,9 @@ public class DesafiosTest {
 	@Test
 	public void deveRetornarUmaLetras(){
 		String palavra = "davi";
-		Map<String, Integer> frequencia = desafios.frequencia(palavra);
+		Map<Character, Integer> frequencia = desafios.frequencia(palavra);
 		
-		int resultado = frequencia.get("d");
+		int resultado = frequencia.get('d');
 		
 		assertEquals(1, resultado);
 	}
