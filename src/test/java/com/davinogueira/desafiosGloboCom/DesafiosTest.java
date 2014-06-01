@@ -53,10 +53,13 @@ public class DesafiosTest {
 	@Test
 	public void deveRetornarDuasLetras(){
 		Map<String, Integer> frequencia = desafios.frequencia("ana");
+		Map<String, Integer> frequencia2 = desafios.frequencia("Atenção");
 		
 		int resultado = frequencia.get("a");
+		int resultado2 = frequencia2.get("a");
 		
 		assertEquals(2, resultado);
+		assertEquals(2, resultado2);
 	}
 	
 	@Test
@@ -78,7 +81,7 @@ public class DesafiosTest {
 		
 		assertEquals(1, resultado);
 	}
-
+	
 	@Test
 	public void deveRetornoar3628800NoFatorialDe10NoRecursivo(){
 		long esperado = 3628800;

@@ -1,5 +1,6 @@
 package com.davinogueira.desafiosGloboCom;
 
+import java.text.Normalizer;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -50,8 +51,10 @@ public class Desafios {
 	public Map<String, Integer> frequencia(String palavra){
 		Map<String, Integer> valores = new HashMap<String, Integer>();
 		
+		String normaliza = Normalizer.normalize(palavra, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]","").toLowerCase();
+		
 		for(int i = 0; i < palavra.length(); i++){
-			String letra = String.valueOf(palavra.charAt(i));
+			String letra = String.valueOf(normaliza.charAt(i));
 			
 			if(!valores.containsKey(letra)){
 				valores.put(letra, 1);
@@ -63,5 +66,6 @@ public class Desafios {
 		
 		return valores;
 	}
+	
 	
 }
